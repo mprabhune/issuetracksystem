@@ -1,0 +1,96 @@
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Issue Tracking System</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">HSBC Global Technologies</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Core Banking Systems</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+<div class = "container">
+<h3 class="page-header"> Add New Issue </h3>
+
+	<form (submit) = "addIssue()">
+		<div class = "form-group">
+			<label>Name</label>
+			<input type="text" [(ngModel)] = "issuename" name="issuename" class = "form-control">
+		</div>
+		<div class = "form-group">
+			<label>Summary</label>
+			<input type="text" [(ngModel)] = "summary" name="summary" class = "form-control">
+		</div>
+		<div class = "form-group">
+			<label>Description</label>
+			<input type="text" [(ngModel)] = "description" name="description" class = "form-control">
+		</div>
+		<div class = "form-group">
+			<label>Project Name</label>
+			<input type="text" [(ngModel)] = "assignedby" name="assignedby" class = "form-control">
+		</div>
+		<div class = "form-group">
+			<label>Region Name</label>
+			<input type="text" [(ngModel)] = "regionname" name="regionname" class = "form-control">
+		</div>
+		<div class = "form-group">
+			<label>Resolution</label>
+			<input type="text" [(ngModel)] = "resolution" name="resolution" class = "form-control">
+		</div>
+		<input type="submit" class = "btn btn btn-success" value = "Add">
+		<br>
+	</form>
+</div>
+<div class = "container">
+	<br><br><br>
+	<form id = "filter">
+		Seach Issue by Keyword   <input name="term" [(ngModel)]="term" type="text" />
+	</form>
+	<br><br><br>
+		<table border="2" width="1000" cellspacing="0" cellpadding="0">
+		<tr>
+			<font size="3">
+			<td><b>Issue</b></td>
+			<td>Summary</td>
+			<td>Description</td>
+			<td>Project Name</td>
+			<td>Region Name</td>
+			<td>Resolution</td>
+			
+	<tr *ngFor = "let issue of issues | filter:term" >
+		<td>
+			{{issue.issuename}}
+		</td>
+		<td>
+			{{issue.summary}}
+		</td>
+		<td>
+			{{issue.description | lowercase}}
+		</td>		
+		<td>
+			{{issue.assignedby}}
+		</td>	
+		<td>
+			{{issue.regionname}}
+		</td>	
+		<td>
+			{{issue.resolution}}
+		</td>	
+		<td>
+			<input type= "button" (click) = "deleteIssue(issue._id)" value = "DELETE" class = "btn btn-danger">
+		</td>	
+		</font>				
+	</tr>
+	</table>
+</div>
